@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://verdelucas3.github.io/official-cn-i-game-com-cn/sitemap.xml
