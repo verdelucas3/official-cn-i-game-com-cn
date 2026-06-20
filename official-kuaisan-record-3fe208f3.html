@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快三平台 · 稳定入口与页面说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f7fafc;
+            color: #0b2b3d;
+            line-height: 1.6;
+            padding: 0 1.5rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* 网格装饰背景 (轻量) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 150, 136, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 150, 136, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        /* hero 区 */
+        .hero {
+            padding: 5rem 0 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 3.6rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b2b3d;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: #00897b;
+            border-bottom: 3px solid #80cbc4;
+            padding-bottom: 0.1em;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #2c5d6b;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            padding: 1rem 2rem;
+            border-radius: 48px;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 1.8rem;
+            font-size: 0.95rem;
+            color: #3a6e7a;
+        }
+
+        .hero-meta span {
+            background: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            box-shadow: 0 2px 6px rgba(0, 137, 123, 0.06);
+            border: 1px solid #e0f2f1;
+        }
+
+        /* 卡片网格 - 优势/特点区 */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            padding: 2.5rem 0 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 8px 24px rgba(0, 100, 90, 0.04);
+            border: 1px solid #e0f2f1;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 137, 123, 0.08);
+        }
+
+        .card .icon {
+            background: #e0f2f1;
+            width: 48px;
+            height: 48px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: #00897b;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            color: #0b2b3d;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2f5b66;
+            margin-bottom: 0.3rem;
+        }
+
+        /* 说明区 (风格偏生活化段落) */
+        .section-note {
+            background: #ffffffdd;
+            backdrop-filter: blur(6px);
+            padding: 2.8rem 2rem;
+            border-radius: 48px;
+            margin: 1.5rem 0 2rem;
+            border: 1px solid #c8e6c9;
+            box-shadow: 0 4px 20px rgba(0, 80, 70, 0.02);
+        }
+
+        .section-note h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #00695c;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-note h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, #80cbc4, transparent);
+        }
+
+        .section-note p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            color: #1d4752;
+        }
+
+        .section-note a {
+            color: #00695c;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid #b2dfdb;
+            transition: border-color 0.15s;
+        }
+
+        .section-note a:hover {
+            border-bottom-color: #00897b;
+        }
+
+        /* FAQ 摘要 (紧凑, 带卡片感) */
+        .faq-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            padding: 1.8rem 0 2.5rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem 1.5rem 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border-left: 5px solid #80cbc4;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            color: #00695c;
+            margin-bottom: 0.4rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-item p {
+            color: #2f5b66;
+            font-size: 0.95rem;
+        }
+
+        .faq-footnote {
+            text-align: center;
+            margin: 0.5rem 0 2rem;
+            color: #4f7e86;
+            font-size: 0.95rem;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            padding: 2rem 0 3rem;
+            border-top: 1px solid #d6ece8;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a {
+            color: #2f5b66;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .footer-links a:hover {
+            border-bottom-color: #00897b;
+            color: #00695c;
+        }
+
+        .footer-links .primary-link {
+            color: #00897b;
+            font-weight: 500;
+            border-bottom: 2px solid #80cbc4;
+        }
+
+        .footer-links .primary-link:hover {
+            border-bottom-color: #00695c;
+        }
+
+        .copyright {
+            text-align: center;
+            color: #6d949e;
+            font-size: 0.85rem;
+            padding: 1rem 0 2.5rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* 移动端微调 */
+        @media (max-width: 580px) {
+            body {
+                padding: 0 1rem;
+            }
+            .hero p {
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            .section-note {
+                padding: 2rem 1.2rem;
+                border-radius: 32px;
+            }
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+            .faq-item {
+                padding: 1.2rem 1rem 1.2rem 1.5rem;
+            }
+            .footer-links {
+                gap: 1rem;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- hero -->
+        <div class="hero">
+            <h1>在 <span>快三</span> 的世界，稳稳起步</h1>
+            <p>每日熟悉节奏 · 自主了解规则 · 保持理性</p>
+            <div class="hero-meta">
+                <span>📌 长期稳定入口</span>
+                <span>🧩 页面指南</span>
+                <span>⚖️ 信息透明</span>
+            </div>
+        </div>
+
+        <!-- 网格卡片：优势 / 特点 -->
+        <div class="grid-cards">
+            <div class="card">
+                <div class="icon">🪜</div>
+                <h3>入口直接</h3>
+                <p>无需绕路，直达平台页面。适合需要固定路径的用户。</p>
+            </div>
+            <div class="card">
+                <div class="icon">🧭</div>
+                <h3>结构清晰</h3>
+                <p>功能分区明确，从规则浏览到个人中心，每一步都有指引。</p>
+            </div>
+            <div class="card">
+                <div class="icon">🔄</div>
+                <h3>稳定迭代</h3>
+                <p>界面设计跟随体验反馈持续优化，减少不必要的跳转。</p>
+            </div>
+            <div class="card">
+                <div class="icon">🧾</div>
+                <h3>信息可查</h3>
+                <p>玩法、记录、说明均可在页面内找到，不依赖外部弹窗。</p>
+            </div>
+        </div>
+
+        <!-- 说明区：从稳定入口与页面说明的角度展开 (偏生活化) -->
+        <div class="section-note">
+            <h2>把页面当作老朋友</h2>
+            <p>
+                很多朋友喜欢收藏一个顺手的地址，每次打开就像回到熟悉的客厅。 
+                <a href="https://official-kuaisan.com">快三平台</a> 的首页正是这样的存在 —— 
+                没有花哨的干扰，重点就是让你快速定位到自己感兴趣的部分。
+            </p>
+            <p>
+                无论是查看往期记录，还是了解不同组合方式，页面都把主要功能放在显眼位置。 
+                有人习惯先翻翻规则，有人喜欢直接看走势，每个人都有自己的节奏。 
+                这个入口保持稳定，就是想给老朋友们一个「不用想就知道怎么走」的落脚点。
+            </p>
+            <p>
+                页面说明也尽量直白：按钮叫「规则」就是规则，叫「记录」就是记录。 
+                你不用猜测某个图标背后藏着什么，所有文字都长在它该在的地方。
+            </p>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div style="margin-top: 1rem;">
+            <h2 style="font-size: 1.6rem; font-weight: 500; color: #00695c; margin-bottom: 0.5rem;">常见疑问 · 短回答</h2>
+        </div>
+        <div class="faq-summary">
+            <div class="faq-item">
+                <strong>❓ 页面打不开怎么办？</strong>
+                <p>先检查网络连接，或尝试复制地址到浏览器打开。地址建议手动输入，避免第三方跳转。</p>
+            </div>
+            <div class="faq-item">
+                <strong>❓ 需要注册才能浏览吗？</strong>
+                <p>首页和规则说明不需要登录即可查看。部分功能需注册后使用，页面会清晰提示。</p>
+            </div>
+            <div class="faq-item">
+                <strong>❓ 有没有官方联系方式？</strong>
+                <p>页面底部一般会有客服入口或邮箱，以平台内显示的为准。不轻信站外消息。</p>
+            </div>
+            <div class="faq-item">
+                <strong>❓ 信息多久更新一次？</strong>
+                <p>开奖与记录实时同步，规则若有调整会在页面发布公告，可留意首页通知栏。</p>
+            </div>
+        </div>
+        <div class="faq-footnote">
+            ⏳ 更多问题欢迎在平台内帮助中心搜索，或直接查看页面说明。
+        </div>
+
+        <!-- 底部链接 -->
+        <div class="footer-links">
+            <a href="https://official-kuaisan.com" class="primary-link">快三平台</a>
+            <a href="#">规则说明</a>
+            <a href="#">常见问题</a>
+            <a href="#">安全提示</a>
+            <a href="#">联系支持</a>
+        </div>
+        <div class="copyright">
+            © 了解页面结构 · 稳定入口 · 日常参考
+        </div>
+
+    </div>
+</body>
+</html>
